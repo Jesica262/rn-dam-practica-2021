@@ -1,27 +1,26 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Button, Input, Spinner} from '@ui-kitten/components';
+import {Button, Input, Layout, Spinner} from '@ui-kitten/components';
 
-const SearchBar = () => {
-  const [value, setValue] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
+const SearchBar = props => {
+  const {searchValue, onSearchChange, onPressSearch, isLoading} = props;
 
   return (
-    <View style={styles.searchContainer}>
+    <Layout style={styles.searchContainer} level="2">
       <Input
         style={styles.input}
         placeholder="Enter a name"
-        value={value}
-        onChangeText={nextValue => setValue(nextValue)}
+        value={searchValue}
+        onChangeText={onSearchChange}
       />
-      <Button
-        style={styles.button}
-        appearance="outline"
-        accessoryLeft={loading ? LoadingIndicator : null}
-        onPress={() => setLoading(prevState => !prevState)}>
-        {!loading && 'Search'}
-      </Button>
-    </View>
+      {/*<Button*/}
+      {/*  style={styles.button}*/}
+      {/*  appearance="outline"*/}
+      {/*  accessoryLeft={isLoading ? LoadingIndicator : null}*/}
+      {/*  onPress={onPressSearch}>*/}
+      {/*  {!isLoading && 'Search'}*/}
+      {/*</Button>*/}
+    </Layout>
   );
 };
 

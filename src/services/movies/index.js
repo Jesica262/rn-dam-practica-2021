@@ -10,7 +10,7 @@ const BASE_URL = 'https://www.omdbapi.com/?apikey=f6de41f1';
  */
 const getMovies = async ({movieName, pageNumber = 1}) => {
   const response = await axios.get(
-    `${BASE_URL}&s=${movieName}&type=movie&page=${pageNumber}&y=2020`,
+    `${BASE_URL}&s=${movieName}&type=movie&page=${pageNumber}`,
   );
   const searchResult = toCamelCaseProps(response.data.Search);
   return searchResult;

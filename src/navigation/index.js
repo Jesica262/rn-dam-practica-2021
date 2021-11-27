@@ -3,16 +3,16 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Icon} from '@ui-kitten/components';
 import NombreComponente from '../components/Componente';
+import {InnerHome, InnerHomeTwo} from './home/InnerHome';
+import Discover from './discover/Dicover';
 
 const MainStack = createNativeStackNavigator();
 
 const HomeNavigator = () => {
   return (
-    <MainStack.Navigator
-      headerBackTitleVisible={false}
-      headerBackVisible={false}>
-      <MainStack.Screen name="Inner Home" component={NombreComponente} />
-      <MainStack.Screen name="Inner Home 2" component={NombreComponente} />
+    <MainStack.Navigator>
+      <MainStack.Screen name="Inner Home" component={InnerHome} />
+      <MainStack.Screen name="Inner Home 2" component={InnerHomeTwo} />
     </MainStack.Navigator>
   );
 };
@@ -58,8 +58,12 @@ const TabNavigator = () => {
           );
         },
       })}>
-      <Tab.Screen name="Home" component={HomeNavigator} />
-      <Tab.Screen name="Discover" component={NombreComponente} />
+      <Tab.Screen
+        name="Home"
+        options={{headerShown: false}}
+        component={HomeNavigator}
+      />
+      <Tab.Screen name="Discover" component={Discover} />
       <Tab.Screen
         name="Profile"
         component={NombreComponente}
