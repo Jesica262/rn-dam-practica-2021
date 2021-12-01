@@ -3,6 +3,7 @@ import SearchBar from '../../components/SearchBar';
 import {Divider, Layout, Text} from '@ui-kitten/components';
 import {getMovies} from '../../services/movies';
 import {FlatList} from 'react-native';
+import MovieCard from '../../components/MovieCard';
 
 const useDebounce = (value, delay) => {
   const [debouncedValue, setDebouncedValue] = React.useState(value);
@@ -15,6 +16,7 @@ const useDebounce = (value, delay) => {
     return () => {
       clearTimeout(timeout);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return debouncedValue;
@@ -24,7 +26,7 @@ const Discover = () => {
   const [movies, setMovies] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [movieName, setMovieName] = React.useState('');
-  const debouncedValue = useDebounce(movieName, 1000);
+  const debouncedValue = useDebounce(movieName, 500);
 
   useEffect(() => {
     searchResult();
@@ -54,7 +56,7 @@ const Discover = () => {
       <Layout style={{padding: 8}} level="3">
         <FlatList
           data={movies}
-          renderItem={({item}) => <Text>{item.title}</Text>}
+          renderItem={({item}) => <MovieCard movie={item} />}
         />
       </Layout>
     </Layout>
