@@ -1,10 +1,10 @@
 import React from 'react';
-import {Text, StyleSheet, Dimensions, View} from 'react-native';
-import {Card, Icon, Layout} from '@ui-kitten/components';
+import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
+import {Card, Icon} from '@ui-kitten/components';
 import Image from 'react-native-scalable-image';
 
 const MovieCard = props => {
-  const {movie} = props;
+  const {movie, withActions = true} = props;
 
   return (
     <Card style={{borderRadius: 8, marginHorizontal: 16, marginBottom: 16}}>
@@ -34,7 +34,7 @@ const MovieCard = props => {
           </Text>
           <Icon
             style={{width: 24, height: 24}}
-            fill="#8F9BB3"
+            fill={'#ead76d'}
             name="star-outline"
           />
         </View>
@@ -46,15 +46,31 @@ const MovieCard = props => {
           source={{uri: movie.poster}}
         />
       </View>
-      <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-        <Icon style={styles.icon} fill="#8F9BB3" name="heart" />
-        <Icon style={styles.icon} fill="#8F9BB3" name="play-circle-outline" />
-        <Icon
-          style={styles.icon}
-          fill="#8F9BB3"
-          name="message-circle-outline"
-        />
-      </View>
+      {withActions && (
+        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+          <TouchableOpacity onPress={() => console.log('Like')}>
+            <Icon
+              style={styles.icon}
+              fill={Math.random() < 0.5 ? '#8F9BB3' : '#f14c63'}
+              name="heart"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Icon
+              style={styles.icon}
+              fill="#8F9BB3"
+              name="play-circle-outline"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Icon
+              style={styles.icon}
+              fill="#8F9BB3"
+              name="message-circle-outline"
+            />
+          </TouchableOpacity>
+        </View>
+      )}
     </Card>
   );
 };

@@ -10,7 +10,7 @@ const BASE_URL = 'https://www.omdbapi.com/?apikey=f6de41f1';
  */
 const getMovies = async ({movieName, pageNumber = 1}) => {
   const response = await axios.get(
-    `${BASE_URL}&s=${movieName}&type=movie&page=${pageNumber}`,
+    `${BASE_URL}&t=${movieName}&type=movie&page=${pageNumber}`,
   );
   const searchResult = toCamelCaseProps(response.data.Search);
   return searchResult;
@@ -22,7 +22,8 @@ const getMovies = async ({movieName, pageNumber = 1}) => {
  * @returns {Promise<void>}
  */
 const getMovieById = async ({movieId = ''}) => {
-  const response = await axios.get(`${BASE_URL}&i=${movieId}&type=movie`);
+  console.log(`${BASE_URL}&i=${movieId}`);
+  const response = await axios.get(`${BASE_URL}&i=${movieId}`);
   const getResult = toCamelCaseProps([response.data]);
   return getResult[0];
 };

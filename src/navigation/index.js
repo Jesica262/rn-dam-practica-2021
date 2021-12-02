@@ -5,6 +5,7 @@ import {Icon} from '@ui-kitten/components';
 import NombreComponente from '../components/Componente';
 import {InnerHome, InnerHomeTwo} from './home/InnerHome';
 import Discover from './discover/Dicover';
+import {Details} from './discover/Details';
 
 const MainStack = createNativeStackNavigator();
 
