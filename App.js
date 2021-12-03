@@ -14,6 +14,7 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {TabNavigator} from './src/navigation';
 import {NavigationContainer} from '@react-navigation/native';
+import {StoreComponent} from './src/store';
 
 const styles = StyleSheet.create({});
 
@@ -22,11 +23,13 @@ const App: () => Node = () => {
     <>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
-        <SafeAreaView style={{flex: 1}}>
-          <NavigationContainer>
-            <TabNavigator />
-          </NavigationContainer>
-        </SafeAreaView>
+        <StoreComponent>
+          <SafeAreaView style={{flex: 1}}>
+            <NavigationContainer>
+              <TabNavigator />
+            </NavigationContainer>
+          </SafeAreaView>
+        </StoreComponent>
       </ApplicationProvider>
     </>
   );

@@ -18,6 +18,17 @@ const HomeNavigator = () => {
   );
 };
 
+const DiscoverStack = createNativeStackNavigator();
+
+const DiscoverNavigator = () => {
+  return (
+    <DiscoverStack.Navigator>
+      <DiscoverStack.Screen name="DiscoverView" component={Discover} />
+      <DiscoverStack.Screen name="Details" component={Details} />
+    </DiscoverStack.Navigator>
+  );
+};
+
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
@@ -64,7 +75,11 @@ const TabNavigator = () => {
         options={{headerShown: false}}
         component={HomeNavigator}
       />
-      <Tab.Screen name="Discover" component={Discover} />
+      <Tab.Screen
+        name="Discover"
+        options={{headerShown: false}}
+        component={DiscoverNavigator}
+      />
       <Tab.Screen
         name="Profile"
         component={NombreComponente}

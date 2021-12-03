@@ -2,12 +2,18 @@ import React from 'react';
 import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Card, Icon} from '@ui-kitten/components';
 import Image from 'react-native-scalable-image';
+import {useStore} from '../store';
+import {useNavigation} from '@react-navigation/native';
 
 const MovieCard = props => {
   const {movie, withActions = true} = props;
+  const store = useStore();
+  const navigator = useNavigation();
 
   return (
-    <Card style={{borderRadius: 8, marginHorizontal: 16, marginBottom: 16}}>
+    <Card
+      style={{borderRadius: 8, marginHorizontal: 16, marginBottom: 16}}
+      onPress={() => navigator.navigate('Details', {id: movie.imdbID})}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <Text
           style={{
@@ -48,17 +54,25 @@ const MovieCard = props => {
       </View>
       {withActions && (
         <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-          <TouchableOpacity onPress={() => console.log('Like')}>
+          <TouchableOpacity onPress={() => store.addFavorites(movie)}>
             <Icon
               style={styles.icon}
-              fill={Math.random() < 0.5 ? '#8F9BB3' : '#f14c63'}
+              fill={
+                store.favorites.find(f => f.imdbID === movie.imdbID)
+                  ? '#f14c63'
+                  : '#8F9BB3'
+              }
               name="heart"
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => store.addToWatchList(movie)}>
             <Icon
               style={styles.icon}
-              fill="#8F9BB3"
+              fill={
+                store.toWatchList.find(f => f.imdbID === movie.imdbID)
+                  ? '#45ee89'
+                  : '#8F9BB3'
+              }
               name="play-circle-outline"
             />
           </TouchableOpacity>

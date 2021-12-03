@@ -1,16 +1,20 @@
 import React, {useEffect} from 'react';
-import {Card, Layout, Text} from '@ui-kitten/components';
+import {Layout, Text} from '@ui-kitten/components';
 import {getMovieById} from '../../services/movies';
 import LottieView from 'lottie-react-native';
 import animation from '../../assets/loadingDetailAnimation.json';
 import MovieCard from '../../components/MovieCard';
+import {useRoute} from '@react-navigation/native';
+
 export const Details = props => {
-  const {id} = props;
   const [movie, setMovie] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
+  const {
+    params: {id},
+  } = useRoute();
 
-  const getMovie = async id => {
-    const movie = await getMovieById({movieId: 'tt6016776' || id});
+  const getMovie = async () => {
+    const movie = await getMovieById({movieId: id || 'tt6016776'});
     console.log(movie);
     setMovie(movie);
     await new Promise(r => setTimeout(r, 2000));
@@ -18,13 +22,18 @@ export const Details = props => {
   };
 
   useEffect(() => {
-    getMovie(id);
-  }, [props, id]);
+    getMovie();
+  }, [props]);
 
   return (
     <Layout style={{flex: 1, paddingTop: 16}} level="2">
       {loading && <LottieView source={animation} autoPlay loop />}
-      {!loading && <MovieCard movie={movie} withActions={false} />}
+      {!loading && (
+        <Layout>
+          <MovieCard movie={movie} withActions={false} />
+          <Text style={{margin: 16}}>{movie.plot}</Text>
+        </Layout>
+      )}
     </Layout>
   );
 };

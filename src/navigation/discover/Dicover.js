@@ -26,7 +26,7 @@ const Discover = () => {
   const [movies, setMovies] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [movieName, setMovieName] = React.useState('');
-  const debouncedValue = useDebounce(movieName, 500);
+  const debouncedValue = useDebounce(movieName, 1000);
 
   useEffect(() => {
     searchResult();
