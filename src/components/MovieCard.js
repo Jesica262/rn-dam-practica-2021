@@ -54,7 +54,7 @@ const MovieCard = props => {
       </View>
       {withActions && (
         <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-          <TouchableOpacity onPress={() => store.addFavorites(movie)}>
+          <TouchableOpacity onPress={() => store.listFavorites(movie)}>
             <Icon
               style={styles.icon}
               fill={

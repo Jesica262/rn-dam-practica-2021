@@ -2,10 +2,11 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Icon} from '@ui-kitten/components';
-import NombreComponente from '../components/Componente';
-import {InnerHome, InnerHomeTwo} from './home/InnerHome';
+//import NombreComponente from '../components/Componente';
+import {InnerHome, InnerHomeTwo, listFavorites, verMasTarde} from './home/InnerHome';
 import Discover from './discover/Dicover';
 import {Details} from './discover/Details';
+import {Profile} from './profile/Profile';
 
 const MainStack = createNativeStackNavigator();
 
@@ -13,7 +14,9 @@ const HomeNavigator = () => {
   return (
     <MainStack.Navigator>
       <MainStack.Screen name="Inner Home" component={InnerHome} />
-      <MainStack.Screen name="Inner Home 2" component={InnerHomeTwo} />
+      <MainStack.Screen name="Ir al Perfil" component={InnerHomeTwo} />
+      <MainStack.Screen name="Lista de Favoritos" component={listFavorites} />
+      <MainStack.Screen name="Ver mas Tarde" component={verMasTarde} />
     </MainStack.Navigator>
   );
 };
@@ -82,7 +85,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={NombreComponente}
+        component={Profile}
         initialParams={{simpleMock: true}}
       />
     </Tab.Navigator>

@@ -31,9 +31,14 @@ export const StoreComponent = props => {
     );
   }, [favorites, toWatchList]);
 
+  function reemplazarDuplicados(value, index, self) { 
+    return (self.indexOf(value) === index)?value:'';
+}
+
   const initialState = {
     favorites,
     addFavorites: movie => setFavorites(prevState => [...prevState, movie]),
+    listFavorites: movie => setFavorites(...new Set(favorites.indexOf(movie))),
     toWatchList,
     addToWatchList: movie => setToWatchList(prevState => [...prevState, movie]),
   };
@@ -41,6 +46,22 @@ export const StoreComponent = props => {
   return <StoreContext.Provider value={initialState} {...props} />;
 };
 
+let letras = ['A', 'B', 'A', 'C', 'B'];
+let letrasUnicas = [];
+
+console.log(letrasUnicas);
+
+
+/*const result = [];
+favorites.forEach((item)=>{
+  //pushes only unique element
+    if(!result.includes(item)){
+    result.push(item);
+  }
+})
+
+console.log(result);
+*/
 export const useStore = () => {
   const ctx = useContext(StoreContext);
   return ctx;
