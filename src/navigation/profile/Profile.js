@@ -14,7 +14,7 @@ export const Profile = () => {
         marginTop: 30,
         height: 30,
         color: '#000000',
-        fontSize: 25, 
+        fontSize: 22, 
         marginBottom:10     
     };
     const textStyle = {
@@ -41,8 +41,8 @@ export const Profile = () => {
                 <Text style={textStyle}>{usuario}</Text> 
                 <Text style={textInputStyle}>Correo</Text>
                 <Text style={textStyle}>{correo}</Text> 
-                <Text style={textInputStyle}>ToWatch List size : {store.toWatchList.length}</Text>
-                <Text style={textInputStyle}>Favorites List size : {store.favorites.length}</Text>
+                <Text style={textInputStyle}>Peliculas Favoritas: {store.favorites.length}</Text>
+                <Text style={textInputStyle}>Peliculas para Ver Mas tarde: {store.toWatchList.length}</Text>
             </View>
             </Card>
             <Button onPress= {() => BackHandler.exitApp()} 

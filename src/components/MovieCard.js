@@ -54,11 +54,11 @@ const MovieCard = props => {
       </View>
       {withActions && (
         <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-          <TouchableOpacity onPress={() => store.listFavorites(movie)}>
+          <TouchableOpacity onPress={() => store.addFavorites(movie)}>
             <Icon
               style={styles.icon}
               fill={
-                store.favorites.find(f => f.imdbID === movie.imdbID)
+                store.listFavorites(movie).find(f => f.imdbID === movie.imdbID)
                   ? '#f14c63'
                   : '#8F9BB3'
               }

@@ -38,7 +38,7 @@ export const StoreComponent = props => {
   const initialState = {
     favorites,
     addFavorites: movie => setFavorites(prevState => [...prevState, movie]),
-    listFavorites: movie => setFavorites(...new Set(favorites.indexOf(movie))),
+    listFavorites: movie => setFavorites(Set(favorites.indexOf(movie))),
     toWatchList,
     addToWatchList: movie => setToWatchList(prevState => [...prevState, movie]),
   };
